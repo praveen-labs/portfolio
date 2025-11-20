@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Praveen Vishwakarma - Backend Engineer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #e0e0e0;
+            background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 50%, #16213e 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(15, 15, 30, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #e0e0e0;
+            text-decoration: none;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #667eea;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            margin-top: 80px;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .hero .title {
+            font-size: 1.5rem;
+            color: #a0a0a0;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero .summary {
+            max-width: 800px;
+            margin: 0 auto 40px;
+            font-size: 1.1rem;
+            color: #b0b0b0;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            animation: fadeIn 2s ease-out;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .btn-secondary:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3);
+            border-color: #667eea;
+        }
+
+        .skill-card h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .tag {
+            background: rgba(102, 126, 234, 0.2);
+            color: #667eea;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .experience-timeline {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .experience-timeline::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .experience-item {
+            position: relative;
+            padding-left: 80px;
+            margin-bottom: 50px;
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: 22px;
+            top: 0;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #667eea;
+            border: 3px solid #0f0f1e;
+        }
+
+        .experience-item h3 {
+            color: #667eea;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .experience-item .company {
+            color: #a0a0a0;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .experience-item .duration {
+            color: #808080;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .contact-section {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 60px;
+            text-align: center;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            background: rgba(102, 126, 234, 0.1);
+            border: 1px solid #667eea;
+            border-radius: 30px;
+            color: #667eea;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .contact-link:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            color: #808080;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .project-showcase {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .project-card-large {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            transition: all 0.3s;
+        }
+
+        .project-card-large:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.3);
+            border-color: #667eea;
+        }
+
+        .project-header {
+            margin-bottom: 30px;
+        }
+
+        .project-header h3 {
+            font-size: 2rem;
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tech-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .project-description {
+            font-size: 1.1rem;
+            color: #b0b0b0;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .project-features {
+            display: grid;
+            gap: 25px;
+        }
+
+        .feature-item {
+            display: flex;
+            gap: 20px;
+            align-items: start;
+            padding: 20px;
+            background: rgba(102, 126, 234, 0.05);
+            border-radius: 10px;
+            border-left: 3px solid #667eea;
+            transition: all 0.3s;
+        }
+
+        .feature-item:hover {
+            background: rgba(102, 126, 234, 0.1);
+            transform: translateX(5px);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            line-height: 1;
+        }
+
+        .feature-item h4 {
+            color: #667eea;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .feature-item p {
+            color: #a0a0a0;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                gap: 15px;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .project-card-large {
+                padding: 25px;
+            }
+
+            .project-header h3 {
+                font-size: 1.5rem;
+            }
+
+            .feature-item {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">PV</div>
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Praveen OmPrakash Vishwakarma</h1>
+                <p class="title">Backend Engineer | SDE-2 | Golang | Java | Spring Boot</p>
+                <p class="summary">
+                    Backend engineer with 3+ years of experience building scalable, resilient, and high-performance systems. 
+                    Specializing in Java, Spring Boot, Kafka, Redis, and microservice architecture with a strong foundation 
+                    in system design, data pipelines, and performance optimization. Based in Mumbai, India.
+                </p>
+                <div class="cta-buttons">
+                    <a href="#contact" class="btn btn-primary">Get In Touch</a>
+                    <a href="https://www.linkedin.com/in/vishwakarmapraveen" target="_blank" class="btn btn-secondary">LinkedIn Profile</a>
+                </div>
+                <p style="margin-top: 30px; color: #808080;">
+                    📍 Mumbai, India
+                </p>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="container">
+                <h2 class="section-title">About Me</h2>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <h3>🎯 Current Focus</h3>
+                        <p>At Nexsys (Vikhroli, Mumbai), delivering client-specific features as part of an Agile team, refactoring legacy codebases into modular architecture, and collaborating with cross-functional teams for high-quality deployments.</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3>🚀 Past Achievements</h3>
+                        <p>Built 50+ accurate ETL pipelines at Media.net with 99% accuracy. Developed alert management system achieving 95% reduction in issue detection time. Reduced response time by 30% through Redis caching optimization.</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3>💡 Problem Solver</h3>
+                        <p>Solved ~500 problems on LeetCode, GFG, and AtCoder. Built distributed rate limiter using Spring Boot, Redis, and sliding window algorithm with Prometheus observability and admin bypass features.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <div class="container">
+                <h2 class="section-title">Technical Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <h3>Languages & Frameworks</h3>
+                        <div class="skill-tags">
+                            <span class="tag">Java</span>
+                            <span class="tag">Golang</span>
+                            <span class="tag">Spring Boot</span>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <h3>Distributed Systems</h3>
+                        <div class="skill-tags">
+                            <span class="tag">Kafka</span>
+                            <span class="tag">Redis</span>
+                            <span class="tag">Microservices</span>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <h3>Databases & Storage</h3>
+                        <div class="skill-tags">
+                            <span class="tag">MySQL</span>
+                            <span class="tag">Redis</span>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <h3>DevOps & Tools</h3>
+                        <div class="skill-tags">
+                            <span class="tag">Docker</span>
+                            <span class="tag">Git</span>
+                            <span class="tag">GitLab</span>
+                            <span class="tag">Grafana</span>
+                            <span class="tag">Prometheus</span>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <h3>Architecture & Design</h3>
+                        <div class="skill-tags">
+                            <span class="tag">LLD/HLD</span>
+                            <span class="tag">REST APIs</span>
+                            <span class="tag">Design Patterns</span>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <h3>Core Concepts</h3>
+                        <div class="skill-tags">
+                            <span class="tag">Multithreading</span>
+                            <span class="tag">Concurrency</span>
+                            <span class="tag">Caching</span>
+                            <span class="tag">CI/CD</span>
+                            <span class="tag">Go-routines</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience">
+            <div class="container">
+                <h2 class="section-title">Experience</h2>
+                <div class="experience-timeline">
+                    <div class="experience-item">
+                        <h3>Software Engineer (Backend Developer)</h3>
+                        <p class="company">NEXSYS</p>
+                        <p class="duration">August 2024 - August 2025 | Vikhroli, Mumbai</p>
+                        <ul style="color: #b0b0b0; margin-top: 10px; line-height: 1.8;">
+                            <li>Delivered multiple client-specific features as part of an Agile team, contributing to sprint planning, story grooming, and timely implementation of change requests</li>
+                            <li>Collaborated with cross-functional teams including Database, QA, and DevOps to ensure smooth integration and high-quality deployments</li>
+                            <li>Refactored messy and tightly coupled codebase into modular, extensible architecture, significantly reducing onboarding time and lowering bug rates</li>
+                        </ul>
+                    </div>
+                    <div class="experience-item">
+                        <h3>Web Application Developer (Backend Developer)</h3>
+                        <p class="company">Media.net (Directi)</p>
+                        <p class="duration">August 2023 - July 2024 | Andheri, Mumbai</p>
+                        <ul style="color: #b0b0b0; margin-top: 10px; line-height: 1.8;">
+                            <li>Developed alert management system in Golang achieving 95% reduction in issue detection time with SMTP and Flock notifications</li>
+                            <li>Designed and developed approximately 40 ETL pipelines with 99% accuracy ensuring seamless data flow</li>
+                            <li>Optimized Docker configurations reducing overall project build time by 20%</li>
+                            <li>Redesigned system into distributed, multi-regional architecture enhancing scalability and fault tolerance</li>
+                            <li>Pioneered Kerberos ticket-based authentication for Kafka data pipeline security using keytabs</li>
+                            <li>Implemented comprehensive monitoring using Grafana, Loki, and Prometheus</li>
+                        </ul>
+                    </div>
+                    <div class="experience-item">
+                        <h3>Associate Web Application Developer</h3>
+                        <p class="company">Media.net (Directi)</p>
+                        <p class="duration">August 2022 - August 2023 | Andheri, Mumbai</p>
+                        <ul style="color: #b0b0b0; margin-top: 10px; line-height: 1.8;">
+                            <li>Enhanced system by integrating real-time data processing capabilities with Kafka</li>
+                            <li>Integrated Redis caching mechanisms reducing database load and improving response time by 30%</li>
+                            <li>Reduced data redundancy errors by 99% while maintaining consistency during successive builds</li>
+                            <li>Designed and developed approximately 10 ETL pipelines with 99% accuracy</li>
+                        </ul>
+                    </div>
+                    <div class="experience-item">
+                        <h3>Software Developer Intern</h3>
+                        <p class="company">Edufra Private Limited</p>
+                        <p class="duration">June 2021 - August 2021 | Remote, Bangalore</p>
+                        <ul style="color: #b0b0b0; margin-top: 10px; line-height: 1.8;">
+                            <li>Designed and implemented RESTful APIs</li>
+                            <li>Conducted rigorous testing using Postman with comprehensive test suites</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <div class="container">
+                <h2 class="section-title">Featured Project</h2>
+                <div class="project-showcase">
+                    <div class="project-card-large">
+                        <div class="project-header">
+                            <h3>🚀 Distributed Rate Limiter</h3>
+                            <div class="project-tech">
+                                <span class="tech-badge">Spring Boot</span>
+                                <span class="tech-badge">Redis</span>
+                                <span class="tech-badge">Prometheus</span>
+                                <span class="tech-badge">Sliding Window</span>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <p class="project-description">
+                                Developed a production-ready distributed rate limiter using Spring Boot and Redis with sliding window algorithm, 
+                                designed to handle high-throughput traffic while maintaining accurate per-user and per-endpoint throttling.
+                            </p>
+                            <div class="project-features">
+                                <div class="feature-item">
+                                    <span class="feature-icon">⚡</span>
+                                    <div>
+                                        <h4>Per-User & Per-Endpoint Throttling</h4>
+                                        <p>Granular rate limiting supporting both user-level and endpoint-level request controls</p>
+                                    </div>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">📊</span>
+                                    <div>
+                                        <h4>Real-Time Observability</h4>
+                                        <p>Integrated Prometheus for real-time metrics, monitoring, and alerting capabilities</p>
+                                    </div>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">🔐</span>
+                                    <div>
+                                        <h4>Admin Bypass & DLQ Handling</h4>
+                                        <p>Special admin privileges and Dead Letter Queue handling for failed requests</p>
+                                    </div>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">⏱️</span>
+                                    <div>
+                                        <h4>TTL-Based Redis Caching</h4>
+                                        <p>Efficient memory management with Time-To-Live based cache expiration strategy</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <div class="contact-section">
+                    <h2 class="section-title">Let's Connect</h2>
+                    <p style="font-size: 1.1rem; color: #b0b0b0; margin-bottom: 20px;">
+                        I'm passionate about building clean, observable, and secure systems that scale. Always learning. Always optimizing.
+                    </p>
+                    <div class="contact-links">
+                        <a href="mailto:praveenvishwakarma171124@gmail.com" class="contact-link">
+                            <span>📧</span> Email Me
+                        </a>
+                        <a href="https://www.linkedin.com/in/vishwakarmapraveen" target="_blank" class="contact-link">
+                            <span>💼</span> LinkedIn
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Praveen Vishwakarma. Built with passion for backend engineering.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll animation for skill cards
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.skill-card, .experience-item, .project-card-large, .feature-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
